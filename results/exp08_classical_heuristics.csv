@@ -1,0 +1,161 @@
+cfg,method,seed,true_gap,found_true_opt,found_qubo_gs,evals
+B,SA em J exato,0,0.0,True,False,300
+B,SA no QUBO,0,5.44122915706933,False,True,300
+B,busca aleatória em J exato,0,0.0,True,False,300
+B,busca aleatória no QUBO,0,5.44122915706933,False,True,300
+B,SA em J exato,1,0.0,True,False,300
+B,SA no QUBO,1,5.44122915706933,False,True,300
+B,busca aleatória em J exato,1,5.44122915706933,False,True,300
+B,busca aleatória no QUBO,1,5.44122915706933,False,True,300
+B,SA em J exato,2,0.0,True,False,300
+B,SA no QUBO,2,5.44122915706933,False,True,300
+B,busca aleatória em J exato,2,0.0,True,False,300
+B,busca aleatória no QUBO,2,5.44122915706933,False,True,300
+B,SA em J exato,3,0.0,True,False,300
+B,SA no QUBO,3,5.44122915706933,False,True,300
+B,busca aleatória em J exato,3,5.44122915706933,False,True,300
+B,busca aleatória no QUBO,3,5.44122915706933,False,True,300
+B,SA em J exato,4,0.0,True,False,300
+B,SA no QUBO,4,5.44122915706933,False,True,300
+B,busca aleatória em J exato,4,0.0,True,False,300
+B,busca aleatória no QUBO,4,5.44122915706933,False,True,300
+B,SA em J exato,5,0.0,True,False,300
+B,SA no QUBO,5,5.44122915706933,False,True,300
+B,busca aleatória em J exato,5,5.44122915706933,False,True,300
+B,busca aleatória no QUBO,5,5.44122915706933,False,True,300
+B,SA em J exato,6,0.0,True,False,300
+B,SA no QUBO,6,5.44122915706933,False,True,300
+B,busca aleatória em J exato,6,0.0,True,False,300
+B,busca aleatória no QUBO,6,5.922212121682065,False,False,300
+B,SA em J exato,7,0.0,True,False,300
+B,SA no QUBO,7,5.44122915706933,False,True,300
+B,busca aleatória em J exato,7,0.0,True,False,300
+B,busca aleatória no QUBO,7,5.44122915706933,False,True,300
+B,SA em J exato,8,0.0,True,False,300
+B,SA no QUBO,8,5.44122915706933,False,True,300
+B,busca aleatória em J exato,8,5.44122915706933,False,True,300
+B,busca aleatória no QUBO,8,5.44122915706933,False,True,300
+B,SA em J exato,9,0.0,True,False,300
+B,SA no QUBO,9,5.44122915706933,False,True,300
+B,busca aleatória em J exato,9,0.0,True,False,300
+B,busca aleatória no QUBO,9,5.922212121682065,False,False,300
+B,SA em J exato,10,0.0,True,False,300
+B,SA no QUBO,10,5.44122915706933,False,True,300
+B,busca aleatória em J exato,10,5.922212121682065,False,False,300
+B,busca aleatória no QUBO,10,5.922212121682065,False,False,300
+B,SA em J exato,11,0.0,True,False,300
+B,SA no QUBO,11,5.44122915706933,False,True,300
+B,busca aleatória em J exato,11,0.0,True,False,300
+B,busca aleatória no QUBO,11,5.44122915706933,False,True,300
+B,SA em J exato,12,0.0,True,False,300
+B,SA no QUBO,12,5.44122915706933,False,True,300
+B,busca aleatória em J exato,12,0.0,True,False,300
+B,busca aleatória no QUBO,12,5.44122915706933,False,True,300
+B,SA em J exato,13,0.0,True,False,300
+B,SA no QUBO,13,5.44122915706933,False,True,300
+B,busca aleatória em J exato,13,0.0,True,False,300
+B,busca aleatória no QUBO,13,0.0,True,False,300
+B,SA em J exato,14,0.0,True,False,300
+B,SA no QUBO,14,5.44122915706933,False,True,300
+B,busca aleatória em J exato,14,0.0,True,False,300
+B,busca aleatória no QUBO,14,5.44122915706933,False,True,300
+B,SA em J exato,15,0.0,True,False,300
+B,SA no QUBO,15,5.44122915706933,False,True,300
+B,busca aleatória em J exato,15,0.0,True,False,300
+B,busca aleatória no QUBO,15,0.0,True,False,300
+B,SA em J exato,16,0.0,True,False,300
+B,SA no QUBO,16,5.44122915706933,False,True,300
+B,busca aleatória em J exato,16,0.0,True,False,300
+B,busca aleatória no QUBO,16,5.44122915706933,False,True,300
+B,SA em J exato,17,0.0,True,False,300
+B,SA no QUBO,17,5.44122915706933,False,True,300
+B,busca aleatória em J exato,17,5.922212121682065,False,False,300
+B,busca aleatória no QUBO,17,5.922212121682065,False,False,300
+B,SA em J exato,18,0.0,True,False,300
+B,SA no QUBO,18,5.44122915706933,False,True,300
+B,busca aleatória em J exato,18,0.0,True,False,300
+B,busca aleatória no QUBO,18,5.44122915706933,False,True,300
+B,SA em J exato,19,0.0,True,False,300
+B,SA no QUBO,19,5.44122915706933,False,True,300
+B,busca aleatória em J exato,19,0.0,True,False,300
+B,busca aleatória no QUBO,19,5.44122915706933,False,True,300
+C,SA em J exato,0,0.0,True,False,300
+C,SA no QUBO,0,4.21594751596885,False,True,300
+C,busca aleatória em J exato,0,0.0,True,False,300
+C,busca aleatória no QUBO,0,4.21594751596885,False,True,300
+C,SA em J exato,1,0.0,True,False,300
+C,SA no QUBO,1,4.21594751596885,False,True,300
+C,busca aleatória em J exato,1,0.5643343884943732,False,False,300
+C,busca aleatória no QUBO,1,4.21594751596885,False,True,300
+C,SA em J exato,2,0.0,True,False,300
+C,SA no QUBO,2,4.21594751596885,False,True,300
+C,busca aleatória em J exato,2,0.0,True,False,300
+C,busca aleatória no QUBO,2,4.21594751596885,False,True,300
+C,SA em J exato,3,0.0,True,False,300
+C,SA no QUBO,3,4.21594751596885,False,True,300
+C,busca aleatória em J exato,3,0.0,True,False,300
+C,busca aleatória no QUBO,3,4.21594751596885,False,True,300
+C,SA em J exato,4,0.0,True,False,300
+C,SA no QUBO,4,4.21594751596885,False,True,300
+C,busca aleatória em J exato,4,0.0,True,False,300
+C,busca aleatória no QUBO,4,4.21594751596885,False,True,300
+C,SA em J exato,5,0.0,True,False,300
+C,SA no QUBO,5,4.21594751596885,False,True,300
+C,busca aleatória em J exato,5,4.21594751596885,False,True,300
+C,busca aleatória no QUBO,5,4.21594751596885,False,True,300
+C,SA em J exato,6,0.0,True,False,300
+C,SA no QUBO,6,4.21594751596885,False,True,300
+C,busca aleatória em J exato,6,0.0,True,False,300
+C,busca aleatória no QUBO,6,4.21594751596885,False,True,300
+C,SA em J exato,7,0.0,True,False,300
+C,SA no QUBO,7,4.21594751596885,False,True,300
+C,busca aleatória em J exato,7,0.5643343884943732,False,False,300
+C,busca aleatória no QUBO,7,4.21594751596885,False,True,300
+C,SA em J exato,8,0.0,True,False,300
+C,SA no QUBO,8,4.21594751596885,False,True,300
+C,busca aleatória em J exato,8,0.0,True,False,300
+C,busca aleatória no QUBO,8,0.0,True,False,300
+C,SA em J exato,9,0.0,True,False,300
+C,SA no QUBO,9,4.21594751596885,False,True,300
+C,busca aleatória em J exato,9,0.5643343884943732,False,False,300
+C,busca aleatória no QUBO,9,0.5643343884943732,False,False,300
+C,SA em J exato,10,0.0,True,False,300
+C,SA no QUBO,10,4.21594751596885,False,True,300
+C,busca aleatória em J exato,10,0.5643343884943732,False,False,300
+C,busca aleatória no QUBO,10,4.21594751596885,False,True,300
+C,SA em J exato,11,0.0,True,False,300
+C,SA no QUBO,11,4.21594751596885,False,True,300
+C,busca aleatória em J exato,11,0.0,True,False,300
+C,busca aleatória no QUBO,11,4.21594751596885,False,True,300
+C,SA em J exato,12,0.0,True,False,300
+C,SA no QUBO,12,4.21594751596885,False,True,300
+C,busca aleatória em J exato,12,0.0,True,False,300
+C,busca aleatória no QUBO,12,4.21594751596885,False,True,300
+C,SA em J exato,13,0.0,True,False,300
+C,SA no QUBO,13,4.21594751596885,False,True,300
+C,busca aleatória em J exato,13,0.0,True,False,300
+C,busca aleatória no QUBO,13,4.21594751596885,False,True,300
+C,SA em J exato,14,0.0,True,False,300
+C,SA no QUBO,14,4.21594751596885,False,True,300
+C,busca aleatória em J exato,14,0.0,True,False,300
+C,busca aleatória no QUBO,14,4.21594751596885,False,True,300
+C,SA em J exato,15,0.0,True,False,300
+C,SA no QUBO,15,4.21594751596885,False,True,300
+C,busca aleatória em J exato,15,0.0,True,False,300
+C,busca aleatória no QUBO,15,4.21594751596885,False,True,300
+C,SA em J exato,16,0.0,True,False,300
+C,SA no QUBO,16,4.21594751596885,False,True,300
+C,busca aleatória em J exato,16,0.0,True,False,300
+C,busca aleatória no QUBO,16,4.21594751596885,False,True,300
+C,SA em J exato,17,0.0,True,False,300
+C,SA no QUBO,17,4.21594751596885,False,True,300
+C,busca aleatória em J exato,17,0.5643343884943732,False,False,300
+C,busca aleatória no QUBO,17,4.21594751596885,False,True,300
+C,SA em J exato,18,0.0,True,False,300
+C,SA no QUBO,18,4.21594751596885,False,True,300
+C,busca aleatória em J exato,18,0.0,True,False,300
+C,busca aleatória no QUBO,18,4.21594751596885,False,True,300
+C,SA em J exato,19,0.0,True,False,300
+C,SA no QUBO,19,4.21594751596885,False,True,300
+C,busca aleatória em J exato,19,0.0,True,False,300
+C,busca aleatória no QUBO,19,4.21594751596885,False,True,300

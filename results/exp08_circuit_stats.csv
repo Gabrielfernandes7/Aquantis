@@ -1,0 +1,13 @@
+cfg,p,variant,depth,n_cx,n_gates,n_qubits
+B,1,standard,48,56,156,8
+B,1,warm,53,56,196,8
+B,2,standard,78,112,288,8
+B,2,warm,87,112,360,8
+B,3,standard,108,168,420,8
+B,3,warm,121,168,524,8
+C,1,standard,48,56,156,8
+C,1,warm,53,56,196,8
+C,2,standard,78,112,288,8
+C,2,warm,87,112,360,8
+C,3,standard,108,168,420,8
+C,3,warm,121,168,524,8
