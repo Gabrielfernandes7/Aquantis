@@ -192,3 +192,40 @@ def test_blocks_validation():
     assert T.blocks(3) == [[7, 8, 9], [10, 11, 12]]
     with pytest.raises(ValueError):
         T.blocks(4)
+
+
+# ---------------- corrections after visual review ----------------
+def test_operational_availability_respects_dead_volume():
+    g = gen()
+    cfg = S.ScenarioConfig("dv", 100.0, 0.0, 1.0, 1.0, dead_volume_hm3=300.0)
+    sc, _ = g.generate_synthetic([cfg], n_draws=3)
+    for s in sc:
+        m = s.months
+        assert (m.dead_volume_hm3 == 300.0).all()
+        assert (m.operational_availability_hm3 >= 0).all()
+        want = (m.availability_hm3 - 300.0).clip(lower=0)
+        assert np.allclose(m.operational_availability_hm3, want)
+        assert (m.operational_availability_hm3 <= m.availability_hm3 + 1e-9).all()
+
+
+def test_negative_policy_keeps_records_and_flags():
+    g = gen()
+    cfg = S.ScenarioConfig("neg", 100.0, 0.0, 0.0, 0.0)  # I<0 in falling-storage months
+    ex = g.eligibility([cfg], "exclude")
+    fl = g.eligibility([cfg], "floor_at_zero")
+    assert len(ex) == len(fl)                              # nothing dropped from the record
+    assert (fl.I_raw_hm3 == ex.I_raw_hm3).all()            # raw value always preserved
+    assert fl.floored.any() and (fl[fl.floored].I_hm3 == 0).all() and (fl[fl.floored].I_raw_hm3 < 0).all()
+    assert not ex.floored.any() and not ex[ex.I_raw_hm3 < 0].eligible.any()
+    assert fl[fl.complete].eligible.all()
+    with pytest.raises(ValueError):
+        g.eligibility([cfg], "bogus")
+
+
+def test_inflow_sequences_for_optimisation_are_complete_and_labelled():
+    g = gen()
+    seq = g.inflow_sequences(CFG)
+    assert (seq.groupby("year").size() == 6).all()
+    assert list(seq[seq.year == seq.year.iloc[0]].month) == HORIZON_MONTHS
+    assert (seq.I_hm3 >= 0).all() and (seq.e_mm > 0).all()
+    assert seq.storage_jul1_hm3_source.notna().all()

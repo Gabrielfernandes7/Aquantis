@@ -32,8 +32,19 @@ class ScenarioGenerator:
         return out
 
     # ---- Family B -------------------------------------------------------------------
-    def eligibility(self, cfgs) -> pd.DataFrame:
-        return pd.concat([S.monthly_implied_table(self.x, c) for c in cfgs], ignore_index=True)
+    def eligibility(self, cfgs, negative_policy="exclude") -> pd.DataFrame:
+        tab = pd.concat([S.monthly_implied_table(self.x, c) for c in cfgs], ignore_index=True)
+        return S.apply_negative_policy(tab, negative_policy)
+
+    def inflow_sequences(self, cfg, negative_policy="exclude") -> pd.DataFrame:
+        """Jul–Dec implied-inflow sequences, one block per source year, for the optimisation stage.
+        Columns: year, month, days, I_hm3, I_raw_hm3, floored, e_mm. Only complete-and-eligible years."""
+        tab = self.eligibility([cfg], negative_policy)
+        ok = T.eligible_years(tab, HORIZON_MONTHS)
+        d = tab[tab.year.isin(ok)][["year", "month", "days", "I_hm3", "I_raw_hm3", "floored"]].copy()
+        d["e_mm"] = [float(self.e_month.loc[(y, m)]) for y, m in zip(d.year, d.month)]
+        d["storage_jul1_hm3_source"] = [float(self._v.loc[pd.Timestamp(y, 7, 1)]) for y in d.year]
+        return d.sort_values(["year", "month"]).reset_index(drop=True)
 
     def _days(self, year_months):
         import calendar
@@ -101,6 +112,11 @@ class ScenarioGenerator:
                         "stress_driest_block", None, "resampled_implied",
                         f"Driest eligible Jul–Dec under this config (year {dry})."))
                 ya, yb = T.eligible_years(tc, [7, 8, 9]), T.eligible_years(tc, [10, 11, 12])
+                # recovery must START from a low-storage state (lowest tercile of Jul-1 storage)
+                if ya:
+                    st0 = {y: float(self._v.loc[pd.Timestamp(y, 7, 1)]) for y in ya}
+                    thr = np.quantile(list(st0.values()), 1 / 3)
+                    ya = [y for y in ya if st0[y] <= thr]
                 if ya and yb:
                     s1 = {y: tc[(tc.year == y) & tc.month.isin([7, 8, 9])].I_hm3.sum() for y in ya}
                     s2 = {y: tc[(tc.year == y) & tc.month.isin([10, 11, 12])].I_hm3.sum() for y in yb}
@@ -108,7 +124,7 @@ class ScenarioGenerator:
                     out.append(self._simulate_from_sources(
                         cfg, tab, [dry, wet], 3, f"S_{cfg.name}_stress_recovery_{dry}_{wet}",
                         "stress_drought_then_recovery", None, "resampled_implied",
-                        f"Driest Jul–Sep ({dry}) followed by wettest Oct–Dec ({wet}); a COMPOSITE, "
+                        f"Driest Jul–Sep ({dry}) among low-storage starts, then wettest Oct–Dec ({wet}); a COMPOSITE, "
                         "not a historical sequence."))
         return out, tab
 

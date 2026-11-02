@@ -28,6 +28,7 @@ class ScenarioConfig:
     r_m3s: float       # hypothesis
     cap_hm3: float = 1752.36  # Portal saturation level used as storage cap (hypothesis)
     v_full: float = 1940.0
+    dead_volume_hm3: float = 109.78  # HYPOTHESIS: upper bound = lowest Portal volume ever observed (2020-02-17)
 
     def as_dict(self):
         return asdict(self)
@@ -61,6 +62,24 @@ def monthly_implied_table(x: pd.DataFrame, cfg: ScenarioConfig) -> pd.DataFrame:
                            np.where(g.I_hm3 < 0, "negative_implied_inflow", ""))
     g["config"] = cfg.name
     return g
+
+
+def apply_negative_policy(tab: pd.DataFrame, policy: str) -> pd.DataFrame:
+    """'exclude' (default): months with I<0 are ineligible (kept with reason).
+    'floor_at_zero': complete months are eligible and negative I is floored at 0 with an explicit
+    flag; ``I_raw_hm3`` always keeps the unmodified value. Used for selection-bias sensitivity."""
+    if policy not in ("exclude", "floor_at_zero"):
+        raise ValueError(policy)
+    t = tab.copy()
+    t["I_raw_hm3"] = t["I_hm3"]
+    t["floored"] = False
+    if policy == "floor_at_zero":
+        t["floored"] = t.complete & (t.I_raw_hm3 < 0)
+        t["I_hm3"] = t.I_raw_hm3.clip(lower=0)
+        t["eligible"] = t.complete
+        t["reason"] = np.where(~t.complete, "incomplete_or_saturated_month",
+                               np.where(t.floored, "negative_implied_inflow_floored", ""))
+    return t
 
 
 def monthly_e_mm(met: pd.DataFrame) -> pd.DataFrame:
@@ -99,7 +118,11 @@ def build_scenario(sid, method, seed, cfg, sim: pd.DataFrame, year_or_draw, infl
     m.insert(3, "month", HORIZON_MONTHS)
     m.insert(4, "days", days)
     m["dV_hm3"] = m.storage_end_hm3 - m.storage_start_hm3
-    m["availability_hm3"] = m.storage_start_hm3 + m.inflow_hm3 - m.evaporation_hm3
+    m["availability_hm3"] = m.storage_start_hm3 + m.inflow_hm3 - m.evaporation_hm3  # GROSS, before withdrawals
+    m["dead_volume_hm3"] = cfg.dead_volume_hm3
+    # operational: only the part above the (hypothesised) dead volume can be allocated
+    m["operational_availability_hm3"] = (m.availability_hm3 - cfg.dead_volume_hm3).clip(lower=0)
+    m["inflow_floored_flag"] = False
     m["storage_origin"] = "simulated" if method != "conditioned_replay" else "portal_observed"
     m["inflow_origin"] = inflow_origin
     m["E_origin"] = "estimate_penman_nasa_power_x_hypothesis_geometry"

@@ -23,9 +23,10 @@ MONTH_COLUMNS = [
     "scenario_id", "family", "year_or_draw", "month", "days",
     "storage_start_hm3", "storage_end_hm3", "dV_hm3",
     "inflow_hm3", "evaporation_hm3", "withdrawal_hm3", "spill_hm3",
-    "availability_hm3",
+    "availability_hm3", "dead_volume_hm3", "operational_availability_hm3",
     "storage_origin", "inflow_origin", "E_origin", "R_origin",
     "missing_flag", "saturated_flag", "usable", "exclusion_reason", "curtailed_flag",
+    "inflow_floored_flag",
 ]
 
 
@@ -67,7 +68,8 @@ def validate_scenario(sc: Scenario, tol: float = 1e-9) -> list[str]:
         errs.append(f"missing columns {missing}")
         return errs
     for c in ["storage_start_hm3", "storage_end_hm3", "evaporation_hm3", "withdrawal_hm3",
-              "spill_hm3", "availability_hm3", "inflow_hm3"]:
+              "spill_hm3", "availability_hm3", "inflow_hm3", "dead_volume_hm3",
+              "operational_availability_hm3"]:
         if (m[c].dropna() < -tol).any():
             errs.append(f"negative values in {c}")
     if set(m["inflow_origin"]) & FORBIDDEN_INFLOW_ORIGINS:
