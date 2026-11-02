@@ -193,16 +193,27 @@ Aquantis/
 
 | ID | Experimento | Status |
 |---|---|---|
-| E01 | Rateio linear | Pendente |
-| E02 | Rateio prioritário | Pendente |
-| E03 | MILP com CVaR | Pendente |
-| E04 | Validação da formulação QUBO | Pendente |
-| E05 | QAOA padrão | Pendente |
-| E06 | Warm-start QAOA | Pendente |
-| E07 | CVaR-QAOA | Pendente |
-| E08 | Comparação de discretizações | Pendente |
-| E09 | Avaliação de ruído | Pendente |
-| E10 | Avaliação fora da amostra | Pendente |
+| E01 | Rateio linear | Concluído (exp. 06), sob hipóteses declaradas |
+| E02 | Rateio prioritário | Concluído (exp. 06), sob hipóteses declaradas |
+| E03 | MILP com CVaR | Concluído (exp. 06), sob hipóteses declaradas |
+| E04 | Validação da formulação QUBO | Concluído como **aproximação** (exp. 07); MILP discreto = enumeração |
+| E05 | QAOA padrão | Concluído em simulação ideal, 8 qubits (exp. 08) |
+| E06 | Warm-start QAOA | Concluído em simulação ideal, 8 qubits (exp. 08) |
+| E07 | CVaR-QAOA | Concluído em simulação ideal, 8 qubits (exp. 08) |
+| E08 | Comparação de discretizações | Parcial: 1, 2 e 3 bits no ótimo clássico (exp. 07); QAOA só com 2 bits |
+| E09 | Avaliação de ruído | Concluído com ruído despolarizante sintético (exp. 08) |
+| E10 | Avaliação fora da amostra | Parcial: leave-one-year-out (exp. 06) e bootstrap não independente (exp. 08) |
+
+### Como reproduzir
+
+```bash
+python3 -m venv venv && ./venv/bin/pip install -r requirements.txt
+./venv/bin/python -m pytest -q                              # 47 testes
+./venv/bin/python -m src.data.fetch_nasa_power              # meteorologia (NASA POWER), opcional
+./venv/bin/jupyter nbconvert --to notebook --execute --inplace --ExecutePreprocessor.timeout=-1 experiments/0N_*.ipynb
+```
+
+Os notebooks `01` a `08` rodam em ordem (os resultados ficam em `results/` e `data/processed/scenarios/`). Os dados brutos ficam em `data/`; o relatório técnico é `docs/relatorio_validacao_hidrologica_oros.md`.
 
 ## 10. Fontes de dados
 
@@ -227,9 +238,9 @@ O projeto seguirá os seguintes princípios:
 
 ## 12. Estado atual e próximos passos
 
-A pesquisa encontra-se na fase inicial de estruturação.
+A cadeia completa (dados → cenários → MILP + CVaR → QUBO → QAOA) foi implementada e executada em escala reduzida. **Os resultados não validam o balanço hídrico nem constituem recomendação operacional**: demandas, pesos, volume morto e os parâmetros de B e C são hipóteses. Em 8 qubits **não há evidência de vantagem quântica**; o QUBO é um substituto aproximado do problema. Ver seções 4.5–4.9 do relatório técnico.
 
-**Marco atual: M1 — Classical-to-QUBO Validation**
+**Marco concluído: M1 — Classical-to-QUBO Validation (com ressalvas)**
 
 1. Coletar dados históricos do Reservatório Orós.
 2. Validar a qualidade e consistência das séries.
