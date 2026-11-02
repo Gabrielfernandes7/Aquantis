@@ -19,7 +19,8 @@
       "e_scale": 0.7,
       "r_m3s": 2.65,
       "cap_hm3": 1752.36,
-      "v_full": 1940.0
+      "v_full": 1940.0,
+      "dead_volume_hm3": 109.78
     },
     {
       "name": "B_mid",
@@ -28,7 +29,8 @@
       "e_scale": 1.0,
       "r_m3s": 4.5,
       "cap_hm3": 1752.36,
-      "v_full": 1940.0
+      "v_full": 1940.0,
+      "dead_volume_hm3": 109.78
     },
     {
       "name": "C_high",
@@ -37,10 +39,11 @@
       "e_scale": 1.3,
       "r_m3s": 5.3,
       "cap_hm3": 1752.36,
-      "v_full": 1940.0
+      "v_full": 1940.0,
+      "dead_volume_hm3": 109.78
     }
   ],
-  "months_hash": "120ecc2ed0875961f513edde3feb309bef0657bc202fff5774e214fcb7d15725",
+  "months_hash": "f24cc61021efb5e45ed55ecabad0585394f7e149ee7f058f853529c9590c0335",
   "python": "3.14.6",
   "pandas": "3.1.0",
   "numpy": "2.5.4",
